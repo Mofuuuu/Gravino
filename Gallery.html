@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+}
+
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+
+.header {
+  background-color: #9933cc;
+  color: #ffffff;
+  padding: 15px;
+  padding-left: 3em;
+
+}
+.menu {
+  margin-top: -32px; /* Adjust the margin as needed */
+}
+
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 8px;
+  margin-bottom: 7px;
+  background-color: #33b5e5;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  font-weight: bold;
+  padding-left: 2em;
+}
+.menu li a {
+  text-decoration: none; 
+  color: #ffffff;
+}
+.menu li:hover {
+  background-color: #0099cc;
+}
+
+.aside {
+  background-color: #33b5e5;
+  padding: 15px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  height: 70px;
+  width: 98.7%; /* Adjusted to use 100% width */
+  background-color: #0099cc;
+  color: #ffffff;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  box-sizing: border-box;
+  
+}
+
+.col-3.menu .about-me-heading {
+  margin-top: 2mm; 
+  margin-bottom: 2px;
+}
+.col-3.menu .about-me-image {
+  margin-left: 25px;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+.carousel-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2em;
+      position: relative;
+      max-height: calc(100vh - 120px);
+      
+    }
+
+    .carousel {
+      width: 100%;
+      max-width: 600px;
+      overflow: hidden;
+      position: relative;
+      margin-left: -50%;
+    }
+
+    .carousel img {
+      width: 380px;
+      height: 350px;
+      display: none;
+      margin: -10px 110px 0 auto;
+      transition: transform 1s ease;
+      
+    }
+    @keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Apply animations based on direction */
+.carousel img.slide-left {
+  animation: slideLeft 0.5s ease;
+}
+
+.carousel img.slide-right {
+  animation: slideRight 0.5s ease;
+}
+
+    .carousel img.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: center; /* Adjust space between arrows */
+    align-items: center;
+      color: white; /* Adjust arrow color */
+      margin-left: -50%;
+    }
+
+    .carousel-controls button {
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: white;
+      
+    }
+    .carousel-controls .prev-button {
+  margin-right: 170px; /* Adjust the right margin as needed */
+}
+
+.carousel-controls .next-button {
+  margin-left: 170px; /* Adjust the left margin as needed */
+}
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px; /* Adjust the bottom position as needed */
+    left: 25%;
+    transform: translateX(-50%);
+    margin-top: 10px; /* Adjust the top margin as needed */
+   
+  }
+
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 5px; /* Adjust the spacing between dots */
+    cursor: pointer;
+    
+  }
+
+  .carousel-dot.active {
+    background-color: #33b5e5; /* Change the active dot color */
+  }
+  
+</style>
+</head> 
+<body>
+
+<div class="header">
+  <h1>Francis Dave G. Gravino</h1>
+</div>
+
+<div class="row">
+  <div class="col-3 menu">
+    <ul>
+      <li><a href="AboutMe.html">About Me</a>
+      <li><a href="persem.html">Subject Taken</a>
+      <li><a href="Enrolled.html">Enrolled</a>
+      <li><a href="ContactMe.html">Contact Me</a>
+      <li><a href="MyFavorites.html">My Favorites</a>
+        <li><a href="Gallery.html">Gallery</a>
+    </ul>
+  </div>
+  <div class="col-3 menu">
+    <h2>My Gallery</h2>
+    </div>
+
+  
+  <div class="carousel-container">
+    <div class="carousel" id="imageCarousel">
+      <!-- Add your carousel content here -->
+      <img src="image1.jpg" alt="Carousel Image 1">
+      <img src="image2.jpg" alt="Carousel Image 2">
+      <img src="image3.jpg" alt="Carousel Image 3">
+      <img src="image4.jpg" alt="Carousel Image 4">
+      <img src="image5.jpg" alt="Carousel Image 5">
+      <img src="image6.jpg" alt="Carousel Image 6">
+      <img src="image7.jpg" alt="Carousel Image 7">
+      <img src="image8.jpg" alt="Carousel Image 8">
+      <img src="image9.jpg" alt="Carousel Image 9">
+      <img src="image10.jpg" alt="Carousel Image 10">
+      <!-- Add more images as needed -->
+    </div>
+    <div class="carousel-controls">
+        <button onclick="prevImage()" class="prev-button">❮</button>
+  <button onclick="nextImage()" class="next-button">❯</button>
+      </div>
+      <div class="carousel-dots" id="dotContainer"></div>
+    </div>
+
+<div class="footer">
+<h2> &#169;2023 - 2024 ITP4 | All Right Reserved </h2>
+  
+</div>
+<!-- Add this script to the end of your HTML body -->
+<script>
+    var currentIndex = 0;
+    var images = document.querySelectorAll('#imageCarousel img');
+    var dotsContainer = document.getElementById('dotContainer');
+    
+    function showImage(index, direction) {
+      images.forEach((img, i) => {
+        img.classList.remove('active', 'slide-left', 'slide-right');
+        if (i === index) {
+          img.classList.add('active');
+          if (direction === 'next') {
+            img.classList.add('slide-left');
+          } else if (direction === 'prev') {
+            img.classList.add('slide-right');
+          }
+        }
+      });
+      updateDots(index);
+      currentIndex = index;
+    }
+    
+    function nextImage() {
+      var nextIndex = (currentIndex + 1) % images.length;
+      showImage(nextIndex, 'next');
+    }
+    
+    function prevImage() {
+      var prevIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(prevIndex, 'prev');
+    }
+    
+    function updateDots(index) {
+      dotsContainer.innerHTML = '';
+      for (var i = 0; i < images.length; i++) {
+        var dot = document.createElement('div');
+        dot.classList.add('carousel-dot');
+        if (i === index) {
+          dot.classList.add('active');
+        }
+        dot.addEventListener('click', function (clickIndex) {
+          return function () {
+            showImage(clickIndex);
+          };
+        }(i));
+        dotsContainer.appendChild(dot);
+      }
+    }
+    
+    showImage(currentIndex);
+    
+    // Automatically advance to the next slide every 3 seconds
+    setInterval(nextImage, 4000);
+    </script>
+</body>
+</html>
